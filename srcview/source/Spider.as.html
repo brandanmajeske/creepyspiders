@@ -1,0 +1,53 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Spider.as</title>
+<link rel="stylesheet" type="text/css" href="../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MouseEvent</span>;
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">Spider</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">SpiderBase</span>
+    <span class="ActionScriptBracket/Brace">{</span>    
+        <span class="ActionScriptComment">//speedX is public to be accessible by other functions
+</span>        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">speedY</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> 1 <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">Math</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">random</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">*</span> 8;
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">Spider</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptComment">//randomize the size of the spider
+</span>            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">scaleX</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">scaleY</span> <span class="ActionScriptOperator">=</span> .35 <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">Math</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">random</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">*</span> 1;
+            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">x</span> <span class="ActionScriptOperator">=</span>  50 <span class="ActionScriptOperator">+</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">Math</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">random</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">*</span> 800<span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">=</span> -100;
+            <span class="ActionScriptComment">//add event listener for moveSPider function
+</span>            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ENTER_FRAME</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">moveSpider</span><span class="ActionScriptBracket/Brace">)</span>;        
+            
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+
+            
+        
+        <span class="ActionScriptComment">//function moveSpider - make spiders move right to left, if they go off the stage make them reappear on the right side again.
+</span>        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">moveSpider</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptComment">//rotate the spider to be facing left
+</span>            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rotation</span> <span class="ActionScriptOperator">=</span> -180;
+            <span class="ActionScriptComment">//set width of spider to variable w
+</span>            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">w</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">height</span><span class="ActionScriptOperator">/</span>2;
+            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">+=</span> <span class="ActionScriptDefault_Text">speedY</span>;
+            
+            <span class="ActionScriptReserved">if</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">&gt;</span> 600 <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">w</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">=</span> -50 <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">w</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+        <span class="ActionScriptBracket/Brace">}</span>
+            
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>
